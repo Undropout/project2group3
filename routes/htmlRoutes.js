@@ -1,6 +1,33 @@
 var db = require("../models");
+var passport = require("../config/passport");
+
+// Requiring our custom middleware for checking if a user is logged in
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
+  // Google Login route
+  app.get(
+    "/auth/google",
+    passport.authenticate("google", {
+      scope: ["https://www.googleapis.com/auth/plus.login"]
+    })
+  );
+  // Google callback route
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google", { failureRedirect: "/login" }),
+    function(req, res) {
+      res.render("success");
+    }
+  );
+  // This page requires you to be previously authorized to view it
+  app.get("/testauth", isAuthenticated, function(req, res) {
+    res.render("testauth");
+  });
+  // redirect page if you go somewhere but you're not authenticated
+  app.get("/login", function(req, res) {
+    res.render("login");
+  });
   // Load index page
   app.get("/", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
