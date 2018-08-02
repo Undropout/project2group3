@@ -1,7 +1,52 @@
 <div id="home">
   <div class="container">
-    <h1>Success - authenticated via google</h1>
-    <a href="/testauth">auth test</a><br>
+    <h1>Success - Thank you for logging in.</h1>
+    <br>
+    <h1>Now we need a little more info about you</h1>
+    <br>
+    <form>
+      <div>
+        <label for="addressedas">Your child addresses you as: </label>
+        <input type="text" id="addressedas" aria-describedby="addressedas" placeholder="Mom, Dad, Pops, etc..">
+      </div>
+      <div>
+        <label for="email">Your email</label>
+        <input type="text" id="email" class="form-control" aria-describedby="email" placeholder="email@aol.com">
+      </div>
+      <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="Username">
+      </div>
+      <button id="submitaddl">Submit</button>
+    </form>
+
+
+    {{!-- addressed_as: DataTypes.STRING, account_type: DataTypes.INTEGER, email: DataTypes.STRING, username: DataTypes.STRING
+    --}}
+
+    <br>
+    <br>
+
+    <h1>Create a task</h1>
+    <br>
+    <form>
+      <div>
+        <label for="taskname">Task: </label>
+        <input type="text" id="taskname" aria-describedby="taskname" placeholder="Mow the grass">
+      </div>
+      <div>
+        <label for="reward">Reward Value</label>
+        <input type="text" id="reward" class="form-control" aria-describedby="reward" placeholder="1, 2, 3..">
+      </div>
+      <button id="submittask">Submit</button>
+    </form>
+
+    <br>
+    <br>
+
+
+    <a href="/testauth">auth test</a>
+    <br>
     <a href="/email">email test</a>
 
 
@@ -9,4 +54,4 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/success.js"></script>

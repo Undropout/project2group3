@@ -52,7 +52,8 @@ passport.use(
           db.Chore.create({
             googleid: profile.id,
             firstname: profile.name.givenName,
-            lastname: profile.name.familyName
+            lastname: profile.name.familyName,
+            accounttype: "0"
           }).then(function() {
             return done(null, profile);
           })

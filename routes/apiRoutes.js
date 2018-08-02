@@ -17,7 +17,7 @@ module.exports = function(app) {
     });
   });
 
-  // update a new example in Chore
+  // update a user in Chore
   app.put("/api/update", function(req, res) {
     console.log(req.user);
     db.Chore.update(req.body, {where: {googleid: req.user.id}}).then(function(dbExample) {
@@ -25,6 +25,14 @@ module.exports = function(app) {
     });
   });
 
+  // Create a new task
+  app.post("/api/createtask", function(req, res) {
+    db.Task.create(req.body).then(function(dbExample) {
+      res.json(dbExample);
+    });
+  });
+
+  // Send an email
   app.post("/api/sendemail", function(req, res) {
 
     var sendMail = async (subject, text) => {

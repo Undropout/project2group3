@@ -12,14 +12,21 @@ module.exports = function(app) {
       scope: ["https://www.googleapis.com/auth/plus.login"]
     })
   );
+
   // Google callback route
+  app.get('/auth/google/callback',
+  passport.authenticate("google", {
+          successRedirect : '/success',
+          failureRedirect : '/'
+  }));
+
+  // Success page
   app.get(
-    "/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "/login" }),
-    function(req, res) {
+    "/success", function(req, res) {
       res.render("success");
     }
   );
+  
   // This page requires you to be previously authorized to view it
   app.get("/testauth", isAuthenticated, function(req, res) {
     res.render("testauth");
