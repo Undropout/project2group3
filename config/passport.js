@@ -46,8 +46,21 @@ passport.use(
       callbackURL: "http://localhost:3000/auth/google/callback"
     },
     function(token, tokenSecret, profile, done) {
-      console.log(profile.displayName);
-      return done(null, profile);
+      console.log(profile.name.givenName, " ", profile.name.familyName, " ", profile.id);
+      db.Chore.findOne({ where: { googleid: profile.id } }).then(function(dbUser) {
+        if (!dbUser) {
+          db.Chore.create({
+            googleid: profile.id,
+            firstname: profile.name.givenName,
+            lastname: profile.name.familyName
+          }).then(function() {
+            return done(null, profile);
+          })
+        } else {
+          return done(null, profile);
+        }
+      })
+
       // db.User.create({ displayname: profile.displayName }, function(err, user) {
       //   return done(err, user);
       // });

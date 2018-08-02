@@ -17,6 +17,14 @@ module.exports = function(app) {
     });
   });
 
+  // update a new example in Chore
+  app.put("/api/update", function(req, res) {
+    console.log(req.user);
+    db.Chore.update(req.body, {where: {googleid: req.user.id}}).then(function(dbExample) {
+      res.json(dbExample);
+    });
+  });
+
   app.post("/api/sendemail", function(req, res) {
 
     var sendMail = async (subject, text) => {
