@@ -24,6 +24,14 @@ module.exports = function(app) {
   app.get("/testauth", isAuthenticated, function(req, res) {
     res.render("testauth");
   });
+  // Simple email page
+  app.get("/email", function(req, res) {
+    res.render("email");
+  });
+  // leaderboard page
+  app.get("/kidleaderboard", function(req, res) {
+    res.render("kidleaderboard");
+  });
   // redirect page if you go somewhere but you're not authenticated
   app.get("/login", function(req, res) {
     res.render("login");
@@ -31,7 +39,7 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
+      res.render("mainindex", {
         msg: "Welcome!",
         examples: dbExamples
       });

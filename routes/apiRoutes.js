@@ -1,4 +1,6 @@
 var db = require("../models");
+const nodemailer = require('nodemailer');
+
 
 module.exports = function(app) {
   // Get all examples
@@ -14,6 +16,42 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
+
+  app.post("/api/sendemail", function(req, res) {
+
+    var sendMail = async (subject, text) => {
+      nodemailer.createTestAccount((err, account) => {
+        let transporter = nodemailer.createTransport({
+          host: 'Gmail',
+          port: 587,
+          secure: false,
+          service: "Gmail",
+          auth: {
+            user: 'chorbiesapp@gmail.com',
+            pass: 'Ch0rb13s'
+          }
+        });
+
+        let mailOptions = {
+          from: '"Our App" <chorbiesapp@gmail.com>',
+          to: '"me" <ronald_nakata@msn.com>',
+          subject,
+          text
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            return console.log(error);
+          }
+          console.log('Message sent: %s', info.messageId);
+          console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        });
+      });
+    }
+    sendMail('Hello', 'Hello from our app');
+
+    res.send("email sent");
+  })
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
