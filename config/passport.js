@@ -45,7 +45,7 @@ passport.use(
       // clientSecret: keys.google.consumer_secret,
       clientID: process.env.GOOGLE_CONSUMER_KEY,
       clientSecret: process.env.GOOGLE_CONSUMER_SECRET,
-      callbackURL: "https://tranquil-inlet-29364.herokuapp.com/auth/google.callback"
+      callbackURL: "https://tranquil-inlet-29364.herokuapp.com/auth/google/callback"
     },
     function(token, tokenSecret, profile, done) {
       console.log(profile.name.givenName, " ", profile.name.familyName, " ", profile.id);
