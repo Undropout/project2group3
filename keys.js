@@ -8,13 +8,13 @@ const aws = require('aws-sdk');
 // ^^^above is example from heroku
 
 // working on localhost:
-// exports.google = {
-//   consumer_key: process.env.GOOGLE_CONSUMER_KEY,
-//   consumer_secret: process.env.GOOGLE_CONSUMER_SECRET
-// };
-
-
-exports.google = new aws.GOOGLE_CONSUMER({
+exports.google = {
   consumer_key: process.env.GOOGLE_CONSUMER_KEY,
   consumer_secret: process.env.GOOGLE_CONSUMER_SECRET
-});
+};
+
+
+// exports.google = new aws.GOOGLE_CONSUMER({
+//   consumer_key: process.env.GOOGLE_CONSUMER_KEY,
+//   consumer_secret: process.env.GOOGLE_CONSUMER_SECRET
+// });
