@@ -1,6 +1,7 @@
 var $submitAddl = $("#submitaddl");
 var $submitTask = $("#submittask");
 var $currentTasks = $("#currenttasks");
+var $sendEmail = $("#sendemail");
 
 
 
@@ -81,3 +82,14 @@ function submittask() {
 }
 
 refreshTasks();
+
+$sendEmail.on("click", doshit);
+
+function doshit() {
+    $.ajax({
+        url: "/api/sendemail",
+        type: "POST"
+    }).then(function(data) {
+        console.log(data);
+    })
+}

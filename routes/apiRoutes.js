@@ -41,7 +41,7 @@ module.exports = function(app) {
 
   // Send an email
   app.post("/api/sendemail", function(req, res) {
-
+    console.log(req);
     var sendMail = async (subject, text) => {
       nodemailer.createTestAccount((err, account) => {
         let transporter = nodemailer.createTransport({
