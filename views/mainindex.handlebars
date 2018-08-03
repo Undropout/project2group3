@@ -17,7 +17,8 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#signInModal" onclick="sigIn()">Sign-In</a>
             </li>
-            {{!-- <li class="nav-item">
+            {{!--
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#registerModal" onclick="register()" id="registerNew">Register</a>
             </li> --}}
         </ul>
@@ -68,8 +69,13 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="saveChanges">Sign-In</button>
-            </div> --}}
-            <a href="/auth/google">Sign In with Google</a>
+            </div> --}} {{!--
+            <button type="button" class="btn btn-lg btn-danger" href="/auth/google">
+                <span class="fa fa-google"></span>
+                Sign In With Google</button> --}}
+            <a href="/auth/google" class="btn btn-danger">
+                <span class="fa fa-google"></span>
+                Sign In with Google</a>
             <br>
 
         </div>
