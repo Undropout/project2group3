@@ -10,6 +10,13 @@ module.exports = function(app) {
     });
   });
 
+  // Get all tasks
+  app.get("/api/tasks", function(req, res) {
+    db.Task.findAll({}).then(function(dbExamples) {
+      res.json(dbExamples);
+    });
+  });
+
   // Create a new example
   app.post("/api/examples", function(req, res) {
     db.Example.create(req.body).then(function(dbExample) {
@@ -20,7 +27,7 @@ module.exports = function(app) {
   // update a user in Chore
   app.put("/api/update", function(req, res) {
     console.log(req.user);
-    db.Chore.update(req.body, {where: {googleid: req.user.id}}).then(function(dbExample) {
+    db.Chore.update(req.body, { where: { googleid: req.user.id } }).then(function(dbExample) {
       res.json(dbExample);
     });
   });
